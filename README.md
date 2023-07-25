@@ -1,3 +1,3 @@
-0x11. C - printf team project
+C - Printf project
 
 Group Project
