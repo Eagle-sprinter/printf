@@ -3,7 +3,7 @@
  * handle_print - A function that prints an argument based on its type
  * @fmt: Formatted string in which to print the arguments.
  * @list: List of arguments to be printed.
- * @ind: index.
+ * @ind: ind.
  * @buffer: Buffer array to handle print.
  * @flags: Computes active flags
  * @width: get width.
