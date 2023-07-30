@@ -2,14 +2,14 @@
 
 /****************** PRINT POINTER ******************/
 /**
- * print_pointer - A function that prints the value of a pointer variable
- * @types: List a of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags.
- * @width: get width.
- * @precision: Precision specification
- * @size: Size specifier
- * Return: Number of chars printed.
+ * print_pointer - A function printing the value of a pointer var
+ * @types: The argument list
+ * @buffer: The buffer array handling print
+ * @flags:  To compute active flags.
+ * @width: To obtain the width.
+ * @precision: The specification of precision 
+ * @size: The specifier of size
+ * Return: The number of printed chars
  */
 int print_pointer(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
@@ -54,19 +54,19 @@ int print_pointer(va_list types, char buffer[],
 
 /************************* PRINT NON PRINTABLE *************************/
 /**
- * print_non_printable - Prints ASCII codes in hexa of non-printable chars
- * @types: List a of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
- * @width: get width
- * @precision: Precision specification
- * @size: Size specifier
- * Return: Number of chars printed
+ * print_non_printable - A function that prints ASCII codes in hexa of non-printable chars
+ * @types: The argument list
+ * @buffer: The buffer array handling print
+ * @flags:  To compute active flags
+ * @width: To obtain the width
+ * @precision: The specification of precision
+ * @size: The specifier of size
+ * Return: The number of printed chars
  */
 int print_non_printable(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int i = 0, offset = 0;
+	int p = 0, offset = 0;
 	char *str = va_arg(types, char *);
 
 	UNUSED(flags);
@@ -77,38 +77,38 @@ int print_non_printable(va_list types, char buffer[],
 	if (str == NULL)
 		return (write(1, "(null)", 6));
 
-	while (str[i] != '\0')
+	while (str[p] != '\0')
 	{
-		if (is_printable(str[i]))
-			buffer[i + offset] = str[i];
+		if (is_printable(str[p]))
+			buffer[p + offset] = str[p];
 		else
-			offset += append_hexa_code(str[i], buffer, i + offset);
+			offset += append_hexa_code(str[p], buffer, p + offset);
 
-		i++;
+		p++;
 	}
 
-	buffer[i + offset] = '\0';
+	buffer[p + offset] = '\0';
 
-	return (write(1, buffer, i + offset));
+	return (write(1, buffer, p + offset));
 }
 
 /************************* PRINT REVERSE *************************/
 /**
- * print_reverse - Prints reverse string.
- * @types: List a of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
- * @width: get width
- * @precision: Precision specification
- * @size: Size specifier
- * Return: Numbers of chars printed
+ * print_reverse - A function printing a reverse string
+ * @types: The argument list
+ * @buffer: The buffer array handling print
+ * @flags:  To compute active flags
+ * @width: To obtain the width
+ * @precision: The specification of precision
+ * @size: The specifier of size
+ * Return: The number of printed chars
  */
 
 int print_reverse(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	char *str;
-	int i, count = 0;
+	int p, count = 0;
 
 	UNUSED(buffer);
 	UNUSED(flags);
@@ -123,12 +123,12 @@ int print_reverse(va_list types, char buffer[],
 
 		str = ")Null(";
 	}
-	for (i = 0; str[i]; i++)
+	for (p = 0; str[p]; p++)
 		;
 
-	for (i = i - 1; i >= 0; i--)
+	for (p = p - 1; p >= 0; p--)
 	{
-		char z = str[i];
+		char z = str[p];
 
 		write(1, &z, 1);
 		count++;
@@ -137,21 +137,21 @@ int print_reverse(va_list types, char buffer[],
 }
 /************************* PRINT A STRING IN ROT13 *************************/
 /**
- * print_rot13string - Print a string in rot13.
- * @types: List a of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
- * @width: get width
- * @precision: Precision specification
- * @size: Size specifier
- * Return: Numbers of chars printed
+ * print_rot13string - A function printing a string in rot13
+ * @types: The argument list
+ * @buffer: the buffer array handling print
+ * @flags:  To compute active flags
+ * @width: To obtain the width
+ * @precision: The specification of precision
+ * @size: The specifier of size
+ * Return: The numbers of printed chars
  */
 int print_rot13string(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	char x;
 	char *str;
-	unsigned int i, j;
+	unsigned int m, n;
 	int count = 0;
 	char in[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
@@ -165,21 +165,21 @@ int print_rot13string(va_list types, char buffer[],
 
 	if (str == NULL)
 		str = "(AHYY)";
-	for (i = 0; str[i]; i++)
+	for (m = 0; str[m]; m++)
 	{
-		for (j = 0; in[j]; j++)
+		for (n = 0; in[n]; n++)
 		{
-			if (in[j] == str[i])
+			if (in[n] == str[m])
 			{
-				x = out[j];
+				x = out[n];
 				write(1, &x, 1);
 				count++;
 				break;
 			}
 		}
-		if (!in[j])
+		if (!in[n])
 		{
-			x = str[i];
+			x = str[m];
 			write(1, &x, 1);
 			count++;
 		}
