@@ -1,11 +1,11 @@
-#ifndef MAIN_H
 #define MAIN_H
+#ifndef MAIN_H
 #include <stdarg.h>
-#include <stdio.h>
 #include <unistd.h>
+#include <stdio.h>
 
-#define UNUSED(x) (void)(x)
 #define BUFF_SIZE 1024
+#define UNUSED(x) (void)(x)
 
 /* FLAGS */
 #define F_MINUS 1
@@ -15,8 +15,8 @@
 #define F_SPACE 16
 
 /* SIZES */
-#define S_LONG 2
 #define S_SHORT 1
+#define S_LONG 2
 
 /**
  * struct fmt - Struct op.
